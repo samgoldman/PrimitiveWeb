@@ -1,0 +1,7 @@
+{% extends "base" %}
+
+{% block content %}
+
+<h1>Result for {{request_id}}</h1>
+
+{% endblock content %}

@@ -1,0 +1,6 @@
+{% extends "base" %}
+
+{% block content %}
+<h1>404 Not Found: {{path}}</h1>
+
+{% endblock content %}

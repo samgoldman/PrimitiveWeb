@@ -1,0 +1,16 @@
+[package]
+name = "primitive_web"
+version = "0.1.0"
+authors = ["samgoldman <sgoldman216@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+rocket = "0.4.4"
+primitive_image = { path = "lib/primitive_image" }
+serde = "1.0"
+serde_json = "1.0"
+serde_derive = "1.0"
+rocket_contrib = {version = "0.4.4", default-features = false, features = ["tera_templates", "serve", "json"]}
+rocket-multipart-form-data = "0.9.2"
+nanoid = "0.3.0"
+rocket-raw-response = "0.4.8"

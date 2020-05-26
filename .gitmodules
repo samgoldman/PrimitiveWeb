@@ -1,0 +1,3 @@
+[submodule "lib/primitive_image"]
+	path = lib/primitive_image
+	url = https://github.com/samgoldman/primitive_image.git

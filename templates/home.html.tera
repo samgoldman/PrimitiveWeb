@@ -1,0 +1,12 @@
+{% extends "base" %}
+
+{% block content %}
+
+<h1>Home</h1>
+
+<form method="post" action="/api/submit" enctype="multipart/form-data">
+    <input name="image" type="file" accept="image/*"/>
+    <button type="submit">Upload The Image File</button>
+</form>
+
+{% endblock content %}
