@@ -3,28 +3,65 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-sm-12 text-center">
+    <div class="col-sm-12 col-md-6 offset-md-3 text-center">
         <h1>Create a Primitive Image</h1>
+        <p>Primitive images are <a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">Scalable Vector Graphics (SVG)</a>
+            approximations of normal images using hundreds or thousands of "primitive" shapes (triangles, elipses, rectangles, ect.).
+            The primitive images look cool on their own, but can also serve as temporary placeholders while waiting for the full
+            image to load. You can read more about that and the underlying tool <a href="https://www.samueltgoldman.com/post/primitive-image/">here</a>.
+            I originally got the idea from <a href="https://github.com/fogleman/primitive">this project</a>, before adapting
+            the tool to Rust and creating this website.
+        </p>
     </div>
 </div>
 
-<form id="submission_form" enctype="multipart/form-data">
-    <input name="image" type="file" accept="image/*"/>
-
-    <input name="num_shapes" type="number" value="500"/>
-    <input name="max_age" type="number" value="100"/>
-    <input name="scale_to" type="number" value="100"/>
-    <input name="seed" type="number" value="0"/>
-    <select name="shape">
-        {% for s in shapes %}
-            <option value="{{s}}" {% if loop.index0 == 0 %} selected {% endif %}>{{ s }}</option>
-        {% endfor %}
-    </select>
-
-
-    <button type="submit">Upload The Image File</button>
-</form>
-
+<div class="row">
+    <div class="col-sm-12 col-md-6 offset-md-3">
+        <form id="submission_form" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="image_input" name="image" accept="image/*" />
+                    <label class="custom-file-label" for="image_input">Image (max 32 MB)</label>
+                    <small class="form-text text-muted">This image is deleted as soon as it's been processed.</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="num_shapes">Number of shapes to draw:</label>
+                <input id="num_shapes" name="num_shapes" class="form-control" type="number" value="500" max="2000" min="1"/>
+            </div>
+            <div class="form-group">
+                <label for="max_age">Maximum age for each hill climbing attempt:</label>
+                <input id="max_age" name="max_age" class="form-control" type="number" value="100" max="200" min="1"/>
+            </div>
+            <div class="form-group">
+                <label for="scale_to">The size to scale the input image to for processing (largest dimension):</label>
+                <input id="scale_to" name="scale_to" class="form-control" type="number" value="100" min="1"/>
+            </div>
+            <div class="form-group">
+                <label for="seed">The random seed to use (0 generates seed based on time):</label>
+                <input id="seed" name="seed" class="form-control" type="number" value="0" min="0"/>
+            </div>
+            <div class="form-group">
+                <label for="shape">The shape to use (mixed uses all shapes):</label>
+                <select id="shape" name="shape" class="form-control">
+                    {% for s in shapes %}
+                    <option value="{{s}}" {% if loop.index0 == 0 %} selected {% endif %}>{{ s }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Upload</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-6 offset-md-3 text-center">
+        <p>Standalone primitive tool: <a href="https://github.com/samgoldman/primitive_image">https://github.com/samgoldman/primitive_image</a> (<a href="https://github.com/samgoldman/primitive_image/releases/">Releases</a>)</p>
+        <p>Website source: <a href="https://github.com/samgoldman/PrimitiveWeb">https://github.com/samgoldman/PrimitiveWeb</a></p>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 <script src="/static/javascript/home.js"></script>
 
 {% endblock content %}
