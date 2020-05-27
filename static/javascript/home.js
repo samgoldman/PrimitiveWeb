@@ -14,6 +14,9 @@ $(document).ready(function() {
             success: function(response) {
                 if (response['status'] === 'ok') {
                     window.location.href = "/view/result/" + response['request_id'];
+                } else {
+                    $('#failure_message').text('Error: ' + response['message']);
+                    $('#failure_message').css('display', 'block');
                 }
         }});
     });

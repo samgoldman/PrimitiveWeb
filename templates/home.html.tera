@@ -12,6 +12,9 @@
             I originally got the idea from <a href="https://github.com/fogleman/primitive">this project</a>, before adapting
             the tool to Rust and creating this website.
         </p>
+        <p id="failure_message" style="display: none">
+
+        </p>
     </div>
 </div>
 
