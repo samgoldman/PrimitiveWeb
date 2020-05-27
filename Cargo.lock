@@ -1162,6 +1162,8 @@ dependencies = [
 name = "primitive_web"
 version = "0.1.0"
 dependencies = [
+ "crossbeam-queue",
+ "lazy_static",
  "nanoid",
  "primitive_image",
  "rocket",
