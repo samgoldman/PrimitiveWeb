@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('#submission_form').ajaxForm({url : '/api/submit',
        dataType : 'json',
        type: 'POST',
-       success : function (response) {
+       success : response => {
             if (response['status'] === 'ok') {
                 window.location.href = "/view/result/" + response['request_id'];
             }
