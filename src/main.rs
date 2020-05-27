@@ -22,6 +22,7 @@ use std::{fs, env, thread};
 use rocket::fairing::AdHoc;
 use std::time::{Duration, SystemTime};
 use primitive_request::PrimitiveRequest;
+use primitive_image::primitive_image::PrimitiveImage;
 
 const FILE_LIFETIME: u64 = 60;
 
@@ -46,12 +47,18 @@ fn primitive_worker() {
     loop {
         match (Q).pop() {
             Ok(request) => {
-                println!("Worked {}", request.request_id)
+                let mut image = PrimitiveImage::from_path(request.input_file_path.clone(), request.scale_to, None);
+
+                primitive_image::runner::run(&mut image, request.num_shapes, request.max_age, request.seed.into(), request.shape);
+
+                image.save_to_svg(env::temp_dir().join("primitive_web").join("output").join(request.request_id.clone() + ".svg"));
+
+                fs::remove_file(request.input_file_path.clone());
             }
             Err(_err) => {}
         }
 
-        thread::sleep(Duration::from_micros(1000));
+        thread::sleep(Duration::from_millis(100));
     }
 }
 

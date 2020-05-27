@@ -16,20 +16,20 @@ use rocket::response::NamedFile;
 const VALID_SHAPES: [&str; 6] = ["TRIANGLE", "CUBIC", "QUADRATIC", "RECTANGLE", "ELLIPSE", "MIXED"];
 const MAX_IMAGE_SIZE: u64 = 32; // MB
 
-const NUM_SHAPES_DEFAULT: u64 = 500;
-const MAX_AGE_DEFAULT: u64 = 100;
-const SCALE_TO_DEFAULT: u64 = 100;
-const SEED_DEFAULT: u64 = 0;
+const NUM_SHAPES_DEFAULT: u32 = 500;
+const MAX_AGE_DEFAULT: u32 = 100;
+const SCALE_TO_DEFAULT: u32 = 100;
+const SEED_DEFAULT: u32 = 0;
 const SHAPE_DEFAULT: &str = VALID_SHAPES[0];
 
-const NUM_SHAPES_MAX: u64 = 2000;
-const MAX_AGE_MAX: u64 = 200;
+const NUM_SHAPES_MAX: u32 = 2000;
+const MAX_AGE_MAX: u32 = 200;
 
-fn extract_uint64(multipart_form_data: &mut MultipartFormData, name: &str, default: u64) -> Option<u64> {
+fn extract_uint32(multipart_form_data: &mut MultipartFormData, name: &str, default: u32) -> Option<u32> {
     match multipart_form_data.texts.remove(name) {
         Some(mut values) => {
             let text_value = values.remove(0).text;
-            let parse_result = u64::from_str(text_value.as_ref());
+            let parse_result = u32::from_str(text_value.as_ref());
 
             match parse_result {
                 Ok(value) => Some(value),
@@ -90,7 +90,7 @@ pub fn submit(content_type: &ContentType, data: Data, queue: State<&Q>) -> JsonV
 
     let image = multipart_form_data.raw.remove("image");
 
-    let num_shapes: u64 = match extract_uint64(&mut multipart_form_data, "num_shapes", NUM_SHAPES_DEFAULT) {
+    let num_shapes: u32 = match extract_uint32(&mut multipart_form_data, "num_shapes", NUM_SHAPES_DEFAULT) {
         Some(val) => val,
         None => {
             return json!({
@@ -99,7 +99,7 @@ pub fn submit(content_type: &ContentType, data: Data, queue: State<&Q>) -> JsonV
             });
         }
     };
-    let max_age: u64 = match extract_uint64(&mut multipart_form_data, "max_age", MAX_AGE_DEFAULT) {
+    let max_age: u32 = match extract_uint32(&mut multipart_form_data, "max_age", MAX_AGE_DEFAULT) {
         Some(val) => val,
         None => {
             return json!({
@@ -108,7 +108,7 @@ pub fn submit(content_type: &ContentType, data: Data, queue: State<&Q>) -> JsonV
             });
         }
     };
-    let scale_to: u64 = match extract_uint64(&mut multipart_form_data, "scale_to", SCALE_TO_DEFAULT) {
+    let scale_to: u32 = match extract_uint32(&mut multipart_form_data, "scale_to", SCALE_TO_DEFAULT) {
         Some(val) => val,
         None => {
             return json!({
@@ -117,7 +117,7 @@ pub fn submit(content_type: &ContentType, data: Data, queue: State<&Q>) -> JsonV
             });
         }
     };
-    let seed: u64 = match extract_uint64(&mut multipart_form_data, "seed", SEED_DEFAULT) {
+    let seed: u32 = match extract_uint32(&mut multipart_form_data, "seed", SEED_DEFAULT) {
         Some(val) => val,
         None => {
             return json!({
