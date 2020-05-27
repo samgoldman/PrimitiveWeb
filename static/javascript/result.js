@@ -3,7 +3,6 @@ const MAX_HEIGHT = $(window).innerHeight() - 100;
 const MAX_WIDTH = $(window).innerWidth() - 100;
 
 const adjustSizes = () => {
-
     const original_height = $("#svg_object").height();
     const original_width  = $("#svg_object").width();
 
