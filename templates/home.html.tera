@@ -18,7 +18,7 @@
         <input name="seed" type="number" value="0"/>
         <select name="shape">
             {% for s in shapes %}
-                <option value="s" {% if loop.index0 == 0 %} selected {% endif %}>{{ s }}</option>
+                <option value="{{s}}" {% if loop.index0 == 0 %} selected {% endif %}>{{ s }}</option>
             {% endfor %}
         </select>
 
