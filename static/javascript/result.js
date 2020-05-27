@@ -36,7 +36,6 @@ const checkStatus = () => {
 
                 // If pending, keep checking
                 if ('pending' === request_status) {
-                    console.log('Setting new timeout');
                     setTimeout(checkStatus, 200);
                 } else if ('done' === request_status) {
                     loadSvg();
