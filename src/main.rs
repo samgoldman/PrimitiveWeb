@@ -115,7 +115,10 @@ fn main() {
         .manage(&Q)
         .register(catchers![not_found]);
 
-    thread::spawn(primitive_worker);
+    for _ in 0..4 {
+        thread::spawn(primitive_worker);
+    }
+
     thread::spawn(cleanup_worker);
 
     r.launch();
