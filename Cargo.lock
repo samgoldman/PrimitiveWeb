@@ -1163,6 +1163,7 @@ name = "primitive_web"
 version = "0.1.0"
 dependencies = [
  "crossbeam-queue",
+ "glob 0.3.0",
  "lazy_static",
  "nanoid",
  "primitive_image",

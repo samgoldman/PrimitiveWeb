@@ -6,11 +6,12 @@ use rocket_multipart_form_data::{mime, MultipartFormDataOptions, MultipartFormDa
 use rocket::Data;
 use std::{fs, env};
 use std::io::Write;
-use std::path::PathBuf;
+use std::path::{PathBuf, Path};
 use std::str::FromStr;
 use rocket::State;
 use crate::primitive_request::PrimitiveRequest;
 use crate::Q;
+use glob::glob;
 use rocket::response::NamedFile;
 
 const VALID_SHAPES: [&str; 6] = ["TRIANGLE", "CUBIC", "QUADRATIC", "RECTANGLE", "ELLIPSE", "MIXED"];
@@ -180,17 +181,25 @@ pub fn submit(content_type: &ContentType, data: Data, queue: State<&Q>) -> JsonV
 
 #[get("/check_status/<request_id>")]
 pub fn check_status(request_id: String) -> JsonValue {
-    json!({
-        "request": {
-            "type": "GET",
-            "uri": "/check_status",
-            "parameters": {"request_id": request_id}
-        },
-        "response": {
-            "status": 501,
-            "message": "not_implemented"
+    if env::temp_dir().join("primitive_web").join("output").join(request_id.clone() + ".svg").exists() { // Done
+        json!({
+            "request_id": request_id.clone(),
+            "status": "done"
+        })
+    } else {
+        let files = glob(&(env::temp_dir().join("primitive_web").join("input").join(request_id.clone()).to_str().unwrap().to_owned() + "*")).unwrap();
+        if  files.count() != 0 { // Pending
+            json!({
+                "request_id": request_id.clone(),
+                "status": "pending"
+            })
+        } else {
+            json!({
+                "request_id": request_id.clone(),
+                "status": "not_found"
+            })
         }
-    })
+    }
 }
 
 #[get("/get_result/<request_id>")]
