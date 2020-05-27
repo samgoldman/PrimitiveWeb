@@ -6,6 +6,7 @@
     <div class="col-sm-12 text-center">
         <h1>Request status: <span id="status"></span></h1>
         <p id="delete_notice" style="display: none">Note: this image will be deleted after an hour! Click the link below to download it.</p>
+        <h3>Queue Size: <span id="queue_size"></span></h3>
     </div>
 </div>
 <div class="row">
@@ -24,6 +25,7 @@
 <script>
     const REQUEST_ID = "{{request_id}}";
 </script>
+<script src="/static/javascript/queue_size.js"></script>
 <script src="/static/javascript/result.js"></script>
 
 {% endblock content %}
