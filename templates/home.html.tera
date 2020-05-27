@@ -16,7 +16,12 @@
         <input name="max_age" type="number" value="100"/>
         <input name="scale_to" type="number" value="100"/>
         <input name="seed" type="number" value="0"/>
-        <input name="shape" type="text" value="TRIANGLE"/>
+        <select name="shape">
+            {% for s in shapes %}
+                <option value="s" {% if loop.index0 == 0 %} selected {% endif %}>{{ s }}</option>
+            {% endfor %}
+        </select>
+
 
         <button type="submit">Upload The Image File</button>
     </form>

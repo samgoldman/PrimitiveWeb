@@ -7,10 +7,12 @@ mod primitive_request;
 #[macro_use] extern crate rocket;
 #[macro_use] extern crate rocket_contrib;
 #[macro_use] extern crate lazy_static;
+#[macro_use] extern crate serde_derive;
 
 extern crate nanoid;
 extern crate rocket_multipart_form_data;
 extern crate rocket_raw_response;
+extern crate serde_json;
 
 use crossbeam_queue::SegQueue;
 use rocket::{Request, Rocket};
@@ -25,6 +27,18 @@ use primitive_request::PrimitiveRequest;
 use primitive_image::primitive_image::PrimitiveImage;
 
 const FILE_LIFETIME: u64 = 60;
+
+pub const VALID_SHAPES: [&str; 6] = ["TRIANGLE", "CUBIC", "QUADRATIC", "RECTANGLE", "ELLIPSE", "MIXED"];
+pub const MAX_IMAGE_SIZE: u64 = 32; // MB
+
+pub const NUM_SHAPES_DEFAULT: u32 = 500;
+pub const MAX_AGE_DEFAULT: u32 = 100;
+pub const SCALE_TO_DEFAULT: u32 = 100;
+pub const SEED_DEFAULT: u32 = 0;
+pub const SHAPE_DEFAULT: &str = VALID_SHAPES[0];
+
+pub const NUM_SHAPES_MAX: u32 = 2000;
+pub const MAX_AGE_MAX: u32 = 200;
 
 lazy_static! {
     pub static ref Q: SegQueue<PrimitiveRequest> = SegQueue::<PrimitiveRequest>::new();
@@ -53,7 +67,7 @@ fn primitive_worker() {
 
                 image.save_to_svg(env::temp_dir().join("primitive_web").join("output").join(request.request_id.clone() + ".svg"));
 
-                fs::remove_file(request.input_file_path.clone());
+                fs::remove_file(request.input_file_path.clone()).unwrap();
             }
             Err(_err) => {}
         }

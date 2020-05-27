@@ -9,21 +9,9 @@ use std::path::PathBuf;
 use std::str::FromStr;
 use rocket::State;
 use crate::primitive_request::PrimitiveRequest;
-use crate::Q;
+use crate::{Q, MAX_IMAGE_SIZE, NUM_SHAPES_DEFAULT, MAX_AGE_DEFAULT, SCALE_TO_DEFAULT, SEED_DEFAULT, SHAPE_DEFAULT};
 use glob::glob;
 use rocket::response::NamedFile;
-
-const VALID_SHAPES: [&str; 6] = ["TRIANGLE", "CUBIC", "QUADRATIC", "RECTANGLE", "ELLIPSE", "MIXED"];
-const MAX_IMAGE_SIZE: u64 = 32; // MB
-
-const NUM_SHAPES_DEFAULT: u32 = 500;
-const MAX_AGE_DEFAULT: u32 = 100;
-const SCALE_TO_DEFAULT: u32 = 100;
-const SEED_DEFAULT: u32 = 0;
-const SHAPE_DEFAULT: &str = VALID_SHAPES[0];
-
-const NUM_SHAPES_MAX: u32 = 2000;
-const MAX_AGE_MAX: u32 = 200;
 
 fn extract_uint32(multipart_form_data: &mut MultipartFormData, name: &str, default: u32) -> Option<u32> {
     match multipart_form_data.texts.remove(name) {
