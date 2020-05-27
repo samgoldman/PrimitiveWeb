@@ -2,30 +2,28 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <h1>Create a Primitive Image</h1>
-        </div>
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <h1>Create a Primitive Image</h1>
     </div>
-
-    <form id="submission_form" enctype="multipart/form-data">
-        <input name="image" type="file" accept="image/*"/>
-
-        <input name="num_shapes" type="number" value="500"/>
-        <input name="max_age" type="number" value="100"/>
-        <input name="scale_to" type="number" value="100"/>
-        <input name="seed" type="number" value="0"/>
-        <select name="shape">
-            {% for s in shapes %}
-                <option value="{{s}}" {% if loop.index0 == 0 %} selected {% endif %}>{{ s }}</option>
-            {% endfor %}
-        </select>
-
-
-        <button type="submit">Upload The Image File</button>
-    </form>
 </div>
+
+<form id="submission_form" enctype="multipart/form-data">
+    <input name="image" type="file" accept="image/*"/>
+
+    <input name="num_shapes" type="number" value="500"/>
+    <input name="max_age" type="number" value="100"/>
+    <input name="scale_to" type="number" value="100"/>
+    <input name="seed" type="number" value="0"/>
+    <select name="shape">
+        {% for s in shapes %}
+            <option value="{{s}}" {% if loop.index0 == 0 %} selected {% endif %}>{{ s }}</option>
+        {% endfor %}
+    </select>
+
+
+    <button type="submit">Upload The Image File</button>
+</form>
 
 <script src="/static/javascript/home.js"></script>
 

@@ -47,9 +47,5 @@ const checkStatus = () => {
 };
 
 $(document).ready(function() {
-    //$('#wrapper_svg').height($(document).innerHeight() - 100);
-    //$('#wrapper_svg').width($(document).innerWidth() - 100);
-    //$('#result_image').height($(document).innerHeight() - 100);
-    //$('#result_image').width($(document).innerWidth() - 100);
     checkStatus();
 });

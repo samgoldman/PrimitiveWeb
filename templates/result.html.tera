@@ -2,23 +2,21 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <h1>Request status: <span id="status"></span></h1>
-            <p id="delete_notice" style="display: none">Note: this image will be deleted after an hour! Click the link below to download it.</p>
-        </div>
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <h1>Request status: <span id="status"></span></h1>
+        <p id="delete_notice" style="display: none">Note: this image will be deleted after an hour! Click the link below to download it.</p>
     </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <img src="" id="svg_object" class="rounded mx-auto d-block"/>
-        </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <img src="" id="svg_object" class="rounded mx-auto d-block"/>
     </div>
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <p>Request ID: {{request_id}}</p>
-            <h1 id="download_link" style="display: none"><a href="/api/get_result/{{request_id}}" download="{{request_id}}.svg">Download</a></h1>
-        </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <p>Request ID: {{request_id}}</p>
+        <h1 id="download_link" style="display: none"><a href="/api/get_result/{{request_id}}" download="{{request_id}}.svg">Download</a></h1>
     </div>
 </div>
 
