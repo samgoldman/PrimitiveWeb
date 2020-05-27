@@ -1,12 +1,11 @@
 use rocket_contrib::json::JsonValue;
 use rocket::http::ContentType;
 use nanoid::nanoid;
-use crossbeam_queue::SegQueue;
 use rocket_multipart_form_data::{mime, MultipartFormDataOptions, MultipartFormData, MultipartFormDataField, MultipartFormDataError};
 use rocket::Data;
 use std::{fs, env};
 use std::io::Write;
-use std::path::{PathBuf, Path};
+use std::path::PathBuf;
 use std::str::FromStr;
 use rocket::State;
 use crate::primitive_request::PrimitiveRequest;
@@ -214,16 +213,8 @@ pub fn get_result(request_id: String) -> Option<NamedFile> {
 }
 
 #[get("/queue_size")]
-pub fn queue_size() -> JsonValue {
+pub fn queue_size(queue: State<&Q>) -> JsonValue {
     json!({
-        "request": {
-            "type": "GET",
-            "uri": "/queue_size",
-            "parameters": {}
-        },
-        "response": {
-            "status": 501,
-            "message": "not_implemented"
-        }
+        "size": queue.inner().len()
     })
 }
