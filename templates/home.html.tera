@@ -61,7 +61,7 @@
         <p>Website source: <a href="https://github.com/samgoldman/PrimitiveWeb">https://github.com/samgoldman/PrimitiveWeb</a></p>
     </div>
 </div>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js" crossorigin="anonymous"></script>
 <script src="/static/javascript/home.js"></script>
 
 {% endblock content %}
