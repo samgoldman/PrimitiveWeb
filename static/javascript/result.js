@@ -22,6 +22,9 @@ const adjustSizes = () => {
 const loadSvg = () => {
     $("#svg_object").attr('src', `/api/get_result/${REQUEST_ID}`);
     adjustSizes();
+
+    $('#delete_notice').css('display', 'block');
+    $('#download_link').css('display', 'block');
 };
 
 const checkStatus = () => {
