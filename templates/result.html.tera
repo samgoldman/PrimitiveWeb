@@ -4,4 +4,6 @@
 
 <h1>Result for {{request_id}}</h1>
 
+<script src="/static/javascript/result.js"></script>
+
 {% endblock content %}

@@ -2,18 +2,26 @@
 
 {% block content %}
 
-<h1>Home</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h1>Create a Primitive Image</h1>
+        </div>
+    </div>
 
-<form method="post" action="/api/submit" enctype="multipart/form-data">
-    <input name="image" type="file" accept="image/*"/>
+    <form id="submission_form" enctype="multipart/form-data">
+        <input name="image" type="file" accept="image/*"/>
 
-    <input name="num_shapes" type="number" value="500"/>
-    <input name="max_age" type="number" value="100"/>
-    <input name="scale_to" type="number" value="100"/>
-    <input name="seed" type="number" value="0"/>
-    <input name="shape" type="text" value="TRIANGLE"/>
-    
-    <button type="submit">Upload The Image File</button>
-</form>
+        <input name="num_shapes" type="number" value="500"/>
+        <input name="max_age" type="number" value="100"/>
+        <input name="scale_to" type="number" value="100"/>
+        <input name="seed" type="number" value="0"/>
+        <input name="shape" type="text" value="TRIANGLE"/>
+
+        <button type="submit">Upload The Image File</button>
+    </form>
+</div>
+
+<script src="/static/javascript/home.js"></script>
 
 {% endblock content %}
