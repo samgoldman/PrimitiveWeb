@@ -11,6 +11,7 @@ use std::str::FromStr;
 use rocket::State;
 use crate::primitive_request::PrimitiveRequest;
 use crate::Q;
+use rocket::response::NamedFile;
 
 const VALID_SHAPES: [&str; 6] = ["TRIANGLE", "CUBIC", "QUADRATIC", "RECTANGLE", "ELLIPSE", "MIXED"];
 const MAX_IMAGE_SIZE: u64 = 32; // MB
@@ -193,18 +194,14 @@ pub fn check_status(request_id: String) -> JsonValue {
 }
 
 #[get("/get_result/<request_id>")]
-pub fn get_result(request_id: String) -> JsonValue {
-    json!({
-        "request": {
-            "type": "GET",
-            "uri": "/get_result",
-            "parameters": {"request_id": request_id}
-        },
-        "response": {
-            "status": 501,
-            "message": "not_implemented"
-        }
-    })
+pub fn get_result(request_id: String) -> Option<NamedFile> {
+    let path = env::temp_dir().join("primitive_web").join("output").join(request_id.clone() + ".svg");
+
+    if path.exists() {
+        NamedFile::open(path).ok()
+    } else {
+        None
+    }
 }
 
 #[get("/queue_size")]
