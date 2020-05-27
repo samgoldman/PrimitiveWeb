@@ -1,5 +1,6 @@
 // wait for the DOM to be loaded
 $(document).ready(function() {
+    bsCustomFileInput.init();
     $('#submission_form').ajaxForm({url : '/api/submit',
        dataType : 'json',
        type: 'POST',
