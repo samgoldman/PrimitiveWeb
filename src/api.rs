@@ -9,7 +9,7 @@ use std::path::PathBuf;
 use std::str::FromStr;
 use rocket::State;
 use crate::primitive_request::PrimitiveRequest;
-use crate::{Q, MAX_IMAGE_SIZE, NUM_SHAPES_DEFAULT, MAX_AGE_DEFAULT, SCALE_TO_DEFAULT, SEED_DEFAULT, SHAPE_DEFAULT};
+use crate::{Q, MAX_IMAGE_SIZE, NUM_SHAPES_DEFAULT, MAX_AGE_DEFAULT, SCALE_TO_DEFAULT, SEED_DEFAULT, SHAPE_DEFAULT, NUM_SHAPES_MAX, MAX_AGE_MAX};
 use glob::glob;
 use rocket::response::NamedFile;
 
@@ -87,6 +87,14 @@ pub fn submit(content_type: &ContentType, data: Data, queue: State<&Q>) -> JsonV
             });
         }
     };
+
+    if num_shapes > NUM_SHAPES_MAX {
+        return json!({
+                "status": "error",
+                "message": format!("num_shapes has a maximum of {}", NUM_SHAPES_MAX)
+            });
+    }
+
     let max_age: u32 = match extract_uint32(&mut multipart_form_data, "max_age", MAX_AGE_DEFAULT) {
         Some(val) => val,
         None => {
@@ -96,6 +104,14 @@ pub fn submit(content_type: &ContentType, data: Data, queue: State<&Q>) -> JsonV
             });
         }
     };
+
+    if max_age > MAX_AGE_MAX {
+        return json!({
+                "status": "error",
+                "message": format!("max_age has a maximum of {}", MAX_AGE_MAX)
+            });
+    }
+
     let scale_to: u32 = match extract_uint32(&mut multipart_form_data, "scale_to", SCALE_TO_DEFAULT) {
         Some(val) => val,
         None => {
