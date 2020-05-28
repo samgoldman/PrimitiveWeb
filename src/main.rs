@@ -26,7 +26,8 @@ use std::time::{Duration, SystemTime};
 use primitive_request::PrimitiveRequest;
 use primitive_image::primitive_image::PrimitiveImage;
 
-const FILE_LIFETIME: u64 = 60;
+const FILE_LIFETIME: u64 = 60; // minutes
+const NUM_PRIMITIVE_WORKERS: u64 = 4;
 
 pub const VALID_SHAPES: [&str; 6] = ["TRIANGLE", "CUBIC", "QUADRATIC", "RECTANGLE", "ELLIPSE", "MIXED"];
 pub const MAX_IMAGE_SIZE: u64 = 32; // MB
@@ -115,7 +116,7 @@ fn main() {
         .manage(&Q)
         .register(catchers![not_found]);
 
-    for _ in 0..4 {
+    for _ in 0..NUM_PRIMITIVE_WORKERS {
         thread::spawn(primitive_worker);
     }
 
