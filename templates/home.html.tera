@@ -24,25 +24,25 @@
             <div class="form-group">
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="image_input" name="image" accept="image/*" />
-                    <label class="custom-file-label" for="image_input">Image (max 32 MB)</label>
+                    <label class="custom-file-label" for="image_input">Image (max {{max_image_size}} MB)</label>
                     <small class="form-text text-muted">This image is deleted as soon as it's been processed.</small>
                 </div>
             </div>
             <div class="form-group">
-                <label for="num_shapes">Number of shapes to draw:</label>
-                <input id="num_shapes" name="num_shapes" class="form-control" type="number" value="500" max="2000" min="1"/>
+                <label for="num_shapes">Number of shapes to draw ({{max_num_shapes}} maximum):</label>
+                <input id="num_shapes" name="num_shapes" class="form-control" type="number" value="{{default_num_shapes}}" max="{{max_num_shapes}}" min="1"/>
             </div>
             <div class="form-group">
-                <label for="max_age">Maximum age for each hill climbing attempt:</label>
-                <input id="max_age" name="max_age" class="form-control" type="number" value="100" max="200" min="1"/>
+                <label for="max_age">Maximum age for each hill climbing attempt ({{max_max_age}} maximum):</label>
+                <input id="max_age" name="max_age" class="form-control" type="number" value="{{default_max_age}}" max="{{max_max_age}}" min="1"/>
             </div>
             <div class="form-group">
                 <label for="scale_to">The size to scale the input image to for processing (largest dimension):</label>
-                <input id="scale_to" name="scale_to" class="form-control" type="number" value="100" min="1"/>
+                <input id="scale_to" name="scale_to" class="form-control" type="number" value="{{default_scale_to}}" min="1"/>
             </div>
             <div class="form-group">
                 <label for="seed">The random seed to use (0 generates seed based on time):</label>
-                <input id="seed" name="seed" class="form-control" type="number" value="0" min="0"/>
+                <input id="seed" name="seed" class="form-control" type="number" value="{{default_seed}}" min="0"/>
             </div>
             <div class="form-group">
                 <label for="shape">The shape to use (mixed uses all shapes):</label>
