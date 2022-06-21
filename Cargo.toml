@@ -5,7 +5,7 @@ authors = ["samgoldman <sgoldman216@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-rocket = "0.4.4"
+rocket = "0.4.7"
 primitive_image = { path = "lib/primitive_image" }
 serde = "1.0"
 serde_json = "1.0"
