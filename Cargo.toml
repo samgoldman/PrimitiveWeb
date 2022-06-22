@@ -2,7 +2,7 @@
 name = "primitive_web"
 version = "0.1.0"
 authors = ["samgoldman <sgoldman216@gmail.com>"]
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 rocket = "0.4.7"
