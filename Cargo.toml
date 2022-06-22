@@ -6,7 +6,7 @@ edition = "2018"
 
 [dependencies]
 rocket = "0.4.7"
-primitive_image = { path = "lib/primitive_image" }
+primitive_image = { git = "https://github.com/samgoldman/primitive_image" }
 serde = "1.0"
 serde_json = "1.0"
 serde_derive = "1.0"
