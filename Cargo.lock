@@ -440,7 +440,7 @@ dependencies = [
  "rand 0.8.5",
  "sha2 0.10.2",
  "subtle",
- "time 0.3.10",
+ "time 0.3.11",
  "version_check 0.9.4",
 ]
 
@@ -1993,7 +1993,7 @@ checksum = "eb9f9e6e233e5c4a35559a617bf40a4ec447db2e84c20b55a6f83167b7e57872"
 [[package]]
 name = "primitive_image"
 version = "0.1.0"
-source = "git+https://github.com/samgoldman/primitive_image#0b6d46ec28f2f72168e9c05525028d93010a18c9"
+source = "git+https://github.com/samgoldman/primitive_image#8c03a3a6c3308f344f86feee84b15c06ac50caf5"
 dependencies = [
  "image",
  "imageproc",
@@ -2336,7 +2336,7 @@ dependencies = [
  "serde",
  "state 0.5.3",
  "tempfile",
- "time 0.3.10",
+ "time 0.3.11",
  "tokio",
  "tokio-stream",
  "tokio-util 0.7.3",
@@ -2454,7 +2454,7 @@ dependencies = [
  "smallvec",
  "stable-pattern",
  "state 0.5.3",
- "time 0.3.10",
+ "time 0.3.11",
  "tokio",
  "uncased",
 ]
@@ -2650,7 +2650,7 @@ checksum = "48dfff04aade74dd495b007c831cd6f4e0cee19c344dd9dc0884c0289b70a786"
 dependencies = [
  "log 0.4.17",
  "termcolor",
- "time 0.3.10",
+ "time 0.3.11",
 ]
 
 [[package]]
@@ -2876,9 +2876,9 @@ dependencies = [
 
 [[package]]
 name = "time"
-version = "0.3.10"
+version = "0.3.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "82501a4c1c0330d640a6e176a3d6a204f5ec5237aca029029d21864a902e27b0"
+checksum = "72c91f41dcb2f096c05f0873d667dceec1087ce5bcf984ec8ffb19acddbb3217"
 dependencies = [
  "itoa",
  "libc",

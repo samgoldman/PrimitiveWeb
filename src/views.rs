@@ -12,7 +12,7 @@ struct HomeContext {
     default_max_age: u32,
     max_max_age: u32,
     default_scale_to: u32,
-    default_seed: u32
+    default_seed: u64
 }
 
 #[get("/home")]

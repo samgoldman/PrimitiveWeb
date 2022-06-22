@@ -6,6 +6,6 @@ pub struct PrimitiveRequest {
     pub num_shapes: u32,
     pub max_age: u32,
     pub scale_to: u32,
-    pub seed: u32,
+    pub seed: u64,
     pub shape: String
 }

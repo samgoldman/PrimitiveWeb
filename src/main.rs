@@ -35,7 +35,7 @@ pub const MAX_IMAGE_SIZE: u64 = 32; // MB
 pub const NUM_SHAPES_DEFAULT: u32 = 500;
 pub const MAX_AGE_DEFAULT: u32 = 100;
 pub const SCALE_TO_DEFAULT: u32 = 100;
-pub const SEED_DEFAULT: u32 = 0;
+pub const SEED_DEFAULT: u64 = 0;
 pub const SHAPE_DEFAULT: &str = VALID_SHAPES[0];
 
 pub const NUM_SHAPES_MAX: u32 = 2000;
@@ -64,7 +64,7 @@ fn primitive_worker() {
             Some(request) => {
                 let mut image = PrimitiveImage::from_path(request.input_file_path.clone(), request.scale_to, None);
 
-                primitive_image::runner::run(&mut image, request.num_shapes, request.max_age, request.seed.into(), request.shape);
+                primitive_image::runner::run(&mut image, request.num_shapes, request.max_age, request.seed, request.shape);
 
                 image.save_to_svg(env::temp_dir().join("primitive_web").join("output").join(request.request_id.clone() + ".svg"));
 

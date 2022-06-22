@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - master
+  pull:
+    branches:
+      - master
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: ./tests/basic_integration.sh
