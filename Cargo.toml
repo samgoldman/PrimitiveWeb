@@ -5,15 +5,15 @@ authors = ["samgoldman <sgoldman216@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-rocket = "0.4.7"
+rocket = "0.4.11"
 primitive_image = { git = "https://github.com/samgoldman/primitive_image" }
-serde = "1.0"
-serde_json = "1.0"
-serde_derive = "1.0"
-rocket_contrib = {version = "0.4.4", default-features = false, features = ["tera_templates", "serve", "json"]}
-rocket-multipart-form-data = "0.9.2"
-nanoid = "0.3.0"
-rocket-raw-response = "0.4.8"
-crossbeam-queue = "0.2"
+serde = "1.0.137"
+serde_json = "1.0.81"
+serde_derive = "1.0.137"
+rocket_contrib = {version = "0.4.11", default-features = false, features = ["tera_templates", "serve", "json"]}
+rocket-multipart-form-data = "0.9.6"
+nanoid = "0.4.0"
+rocket-raw-response = "0.5.2"
+crossbeam-queue = "0.3.5"
 lazy_static = "1.4.0"
 glob = "0.3.0"

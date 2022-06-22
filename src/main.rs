@@ -61,7 +61,7 @@ fn base_redirect() -> Redirect {
 fn primitive_worker() {
     loop {
         match (Q).pop() {
-            Ok(request) => {
+            Some(request) => {
                 let mut image = PrimitiveImage::from_path(request.input_file_path.clone(), request.scale_to, None);
 
                 primitive_image::runner::run(&mut image, request.num_shapes, request.max_age, request.seed.into(), request.shape);
@@ -70,7 +70,7 @@ fn primitive_worker() {
 
                 fs::remove_file(request.input_file_path.clone()).unwrap();
             }
-            Err(_err) => {}
+            None => {}
         }
 
         thread::sleep(Duration::from_millis(100));
