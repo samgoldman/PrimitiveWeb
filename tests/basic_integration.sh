@@ -2,6 +2,7 @@
 
 trap "killall primitive_web" EXIT
 
+cargo build --release
 cargo run --release &
 
 sleep 3
